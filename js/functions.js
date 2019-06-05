@@ -22,6 +22,9 @@ function getScore(){
 }
 
 function displayResults(dataFromServer){
-  var results = dataFromServer.data.games;
-  
+  var results = dataFromServer.data.games.game;
+  $.each(results, function(resultsIndex, resultsValue){
+    var awayTeam = resultsValue.away_name_abbrev;
+    var homeTeam = resultsValue.home_name_abbrev;
+  })
 }
