@@ -24,7 +24,14 @@ function getScore(){
 function displayResults(dataFromServer){
   var results = dataFromServer.data.games.game;
   $.each(results, function(resultsIndex, resultsValue){
-    var awayTeam = resultsValue.away_name_abbrev;
-    var homeTeam = resultsValue.home_name_abbrev;
+    var index = resultsIndex;
+    var gameObj = resultsValue;
+    var awayTeam = gameObj.away_team_city;
+    var homeTeam = gameObj.home_team_city;
+    var league = gameObj.league;
+    var linescore = gameObj.linescore;
+    var inning = linescore.inning;
+    var innCount = inning.length;
+    console.log(innCount);
   })
 }
