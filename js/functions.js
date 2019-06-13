@@ -1,5 +1,4 @@
-$('document').ready
-(function(){
+$('document').ready(function(){
   getScore();
   displayResults();
 });
@@ -17,21 +16,35 @@ function getScore(){
   url += '/day_'
   url += day
   url += '/master_scoreboard.json'
-  
+  console.log(url);
   $.getJSON(url, displayResults)
 }
 
 function displayResults(dataFromServer){
   var results = dataFromServer.data.games.game;
+  var i = 0;
   $.each(results, function(resultsIndex, resultsValue){
-    var index = resultsIndex;
+    var gameIndex = resultsIndex;
     var gameObj = resultsValue;
     var awayTeam = gameObj.away_team_city;
     var homeTeam = gameObj.home_team_city;
     var league = gameObj.league;
     var linescore = gameObj.linescore;
     var inning = linescore.inning;
-    var innCount = inning.length;
-    console.log(innCount);
+    for(i; i < 8; i++){
+      console.log(i);
+      var awayScore = inning[i].away;
+    }
+    console.log(awayScore);
+    // $('#away').append(awayTeam + ': ' + awayScore + '<br>');
+    // console.log(awayTeam);
   })
 }
+
+
+
+// $.each(inning, function(index, value){
+//   var inNum = index;
+//   var away = value.away;
+//   var home = value.home;
+// })
