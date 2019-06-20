@@ -16,12 +16,13 @@ function getScore(){
   url += '/day_'
   url += day
   url += '/master_scoreboard.json'
-  console.log(url);
+
   $.getJSON(url, displayResults)
 }
 
 function displayResults(dataFromServer){
   var results = dataFromServer.data.games.game;
+  console.log(results);
   var i = 0;
   $.each(results, function(resultsIndex, resultsValue){
     var gameIndex = resultsIndex;
@@ -31,11 +32,12 @@ function displayResults(dataFromServer){
     var league = gameObj.league;
     var linescore = gameObj.linescore;
     var inning = linescore.inning;
-    for(i; i < 8; i++){
-      console.log(i);
-      var awayScore = inning[i].away;
-    }
-    console.log(awayScore);
+    var awayScore;
+    console.log(gameIndex);
+    // for(i; i < 8; i++){
+    //    console.log(inning[i].away);
+    // }
+    // console.log(awayScore);
     // $('#away').append(awayTeam + ': ' + awayScore + '<br>');
     // console.log(awayTeam);
   })
