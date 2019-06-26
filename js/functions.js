@@ -1,52 +1,29 @@
 $('document').ready(function(){
-  getScore();
-  displayResults();
+  ajaxCall();
 });
 
+function ajaxCall(){
+  var mlb = 'http://gd.mlb.com/components/game/mlb/year_2019/month_06/day_25/master_scoreboard.json';
+  $.ajax({
+    url: mlb,
+    dataType: 'json',
+    success: function(data){
+      var rawInning = data.data.games.game[0].linescore.inning
+      var homeTeam = data.data.games.game[0].home_team_city;
+      var awayTeam = data.data.games.game[0].away_team_city;
+      var i = rawInning.length;
+      var iCount = 0;
+      // console.log(rawInning)
+      for(iCount; iCount < i; iCount++) {
+          homeScore = rawInning[iCount].home;
+          awayScore = rawInning[iCount].away;
+          iCount + 1;
+          console.log("Inning: "+ iCount)
+          console.log(homeTeam + ": "+ homeScore)
+          console.log(awayTeam + ": "+ awayScore)
+          // debugger;
+      }
+    }
 
-function getScore(){
-  var d = new Date();
-  var year = d.getFullYear();
-  var month = String(d.getMonth() + 1).padStart(2, '0');
-  var day = String(d.getDate()).padStart(2, '0');;
-  var url = 'http://gd.mlb.com/components/game/mlb/year_'
-  url += year
-  url += '/month_'
-  url += month
-  url += '/day_'
-  url += day
-  url += '/master_scoreboard.json'
-
-  $.getJSON(url, displayResults)
-}
-
-function displayResults(dataFromServer){
-  var results = dataFromServer.data.games.game;
-  console.log(results);
-  var i = 0;
-  $.each(results, function(resultsIndex, resultsValue){
-    var gameIndex = resultsIndex;
-    var gameObj = resultsValue;
-    var awayTeam = gameObj.away_team_city;
-    var homeTeam = gameObj.home_team_city;
-    var league = gameObj.league;
-    var linescore = gameObj.linescore;
-    var inning = linescore.inning;
-    var awayScore;
-    console.log(gameIndex);
-    // for(i; i < 8; i++){
-    //    console.log(inning[i].away);
-    // }
-    // console.log(awayScore);
-    // $('#away').append(awayTeam + ': ' + awayScore + '<br>');
-    // console.log(awayTeam);
   })
 }
-
-
-
-// $.each(inning, function(index, value){
-//   var inNum = index;
-//   var away = value.away;
-//   var home = value.home;
-// })
