@@ -17,8 +17,8 @@ function ajaxCall(){
       for(iCount; iCount < i; iCount++) {
           homeScore = rawInning[iCount].home;
           awayScore = rawInning[iCount].away;
-          iCount + 1;
-          console.log("Inning: "+ iCount)
+          var inningNum = iCount + 1;
+          console.log("Inning: "+ inningNum)
           console.log(homeTeam + ": "+ homeScore)
           console.log(awayTeam + ": "+ awayScore)
           // debugger;
