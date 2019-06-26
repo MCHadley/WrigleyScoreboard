@@ -8,9 +8,10 @@ function ajaxCall(){
     url: mlb,
     dataType: 'json',
     success: function(data){
-      var rawInning = data.data.games.game[0].linescore.inning
-      var homeTeam = data.data.games.game[0].home_team_city;
-      var awayTeam = data.data.games.game[0].away_team_city;
+      var games = data.data.games.game;
+      var rawInning = games[0].linescore.inning
+      var homeTeam = games[0].home_team_city;
+      var awayTeam = games[0].away_team_city;
       var i = rawInning.length;
       var iCount = 0;
       // console.log(rawInning)
