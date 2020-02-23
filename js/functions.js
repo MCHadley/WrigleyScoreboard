@@ -14,18 +14,20 @@ function ajaxCall(){
         var rawInning = games[i].linescore.inning
         var homeTeam = games[i].home_team_city;
         var awayTeam = games[i].away_team_city;
+        var homeAbbv = games[i].home_name_abbrev
+        var awayAbbv = games[i].away_name_abbrev
         var rawLength = rawInning.length;
         var iCount = 0
-        $('#teams').append('<tbody><tr><th id="'+ awayTeam +'">'+ awayTeam +'</th></tr><tr><th id="'+ homeTeam +'">'+ homeTeam +'</th></tr></tbody>');
-        // console.log(rawInning)
+        $('#teams').append('<tr class='+ awayAbbv +'><td>'+ awayTeam +'</td></tr><tr class='+ homeAbbv +'><td>'+ homeTeam +'</td></tr>');
         for(iCount; iCount < rawLength; iCount++) {
             homeScore = rawInning[iCount].home;
             awayScore = rawInning[iCount].away;
             var inningNum = iCount + 1;
-            console.log("Inning: "+ inningNum);
-            console.log(homeTeam + ": "+ homeScore)
-            console.log(awayTeam + ": "+ awayScore)
-            // debugger;
+            // console.log("Inning: "+ inningNum);
+            // console.log(homeTeam + ": "+ homeScore)
+            // console.log(awayTeam + ": "+ awayScore)
+            $('.' + homeAbbv).append('<td>'+ homeScore +'</td>')
+            $('.' + awayAbbv).append('<td>'+ awayScore +'</td>')
         }
       })
     }
